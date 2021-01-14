@@ -1,0 +1,56 @@
+QLabel{
+font-size : 15px;
+border-style:none;
+border:1px solid #242424;
+color:#DCDCDC;
+padding:5px;
+min-height:40px;
+min-width:100px;
+border-radius:5px;
+}
+
+QComboBox{
+    font-size : 15px;
+    border-style:none;
+    border:1px solid #242424;
+    color:#DCDCDC;
+    padding:5px;
+    min-height:40px;
+    min-width:100px;
+    border-radius:5px;
+}
+
+
+QPushButton{
+    font-size : 15px;
+}
+
+QPushButton{
+border-style:none;
+border:1px solid #242424;
+color:#DCDCDC;
+padding:5px;
+min-height:40px;
+min-width:100px;
+border-radius:5px;
+background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #484848,stop:1 #383838);
+}
+
+QPushButton:hover{
+background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #646464,stop:1 #525252);
+}
+
+QPushButton:pressed{
+background:qlineargradient(spread:pad,x1:0,y1:0,x2:0,y2:1,stop:0 #484848,stop:1 #383838);
+}
+
+QLabel{
+font-size : 30px;
+border-style:none;
+border:1px solid #242424;
+color:#DCDCDC;
+padding:5px;
+min-height:40px;
+min-width:100px;
+border-radius:5px;
+}
