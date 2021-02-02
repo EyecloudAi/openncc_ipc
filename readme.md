@@ -18,6 +18,8 @@
 
 ### Build Ipc_Viewer
 
+- It is a application based on QT 5.x framework,you can use QtCreator to open the project `ipc_viewer/IpcViewer/IpcViewer.pro` and build it. You can find sdk files in directory `ipc_viewer/depends/cliSdk`.   
+
 #### Build Dependencies
 
 - opencv3,
@@ -52,11 +54,8 @@ If you want to compile on raspberry pie,You need to recompile it,The location of
 #### Compiler
 - g++4.8
 
-
-It is a application based on QT 5.x framework,you can use QtCreator to open the project `ipc_viewer/IpcViewer/IpcViewer.pro` and build it. You can find sdk files in directory `ipc_viewer/depends/cliSdk`.  
-
-After built success,you will find a output bin file named IpcViewer in `ipc_viewer/build` directory,
-  you can copy the bin file to another folder(example:qt_release),at the same time you need copy the `ipc_viewer/build/Configuration` to the directory qt_release,and run `sudo linuxdeployqt IpcViewer -appimage` in qt_release path,you will get a qt release package.  
+After built success,you will find a output bin file named IpcViewer in "ipc_viewer/build" directory,
+  you can copy the bin file to another folder(example:qt_release),at the same time you need copy the "ipc_viewer/build/Configuration" to the directory qt_release,and run "sudo linuxdeployqt IpcViewer -appimage" in qt_release path,you will get a qt release package.  
 
 
 ### Update the models
