@@ -28,19 +28,19 @@
 
 typedef struct
 {
-    int  sender   ;      //发送模块
-    int  receiver ;      //接受模块
-    int  command  ;      //命令字
-    int  length   ;      //内容长度
+    int  sender   ;      //send mode
+    int  receiver ;      //receive mode
+    int  command  ;      //command 
+    int  length   ;      //command length
 }_PACKED_ MESSAG_HEADER ;
 
 typedef struct
 {
-    int  sender   ;      //发送模块
-    int  receiver ;      //接受模块
-    int  command  ;      //命令字
-    int  length   ;      //内容长度
-    char data[240] ;     //内容，不一定为240字节，很多命令需要返回执行结果，一般都是data[0]=1: ok  0: error
+    int  sender   ;      //send mode
+    int  receiver ;      //receive mode
+    int  command  ;      //command 
+    int  length   ;      //command length
+    char data[240] ;     //command length，deault  execute reusult:data[0]=1: ok  0: error
 }_PACKED_ KERNEL_MESSAGE   ;
 
 #define  APP_MODULE               0x8000
@@ -54,7 +54,7 @@ typedef struct
 #define  APP_SYSCTRL_MSG          0x800000
 #define  APP_GET_VERSION          APP_SYSCTRL_MSG+0   //public command for all app module
 #define  APP_HEART_TEST           APP_SYSCTRL_MSG+1   //heart test
-#define  APP_REM_REBOOT           APP_SYSCTRL_MSG+2   //远程重启
+#define  APP_REM_REBOOT           APP_SYSCTRL_MSG+2   //reboot 
 #define  APP_VIDEO_CONTROL        APP_SYSCTRL_MSG+3   //video control by rtsp 
 #define  APP_REP_MEDIA            APP_SYSCTRL_MSG+4
 #define  APP_IPC_ADDR             APP_SYSCTRL_MSG+5    
@@ -63,17 +63,18 @@ typedef struct
 
 #define  APP_GET_VIDEO_PARAM      APP_SYSCTRL_MSG+8
 #define  APP_SET_VIDEO_PARAM      APP_SYSCTRL_MSG+9
+#define  APP_GET_ENCRYPT_PARAM    APP_SYSCTRL_MSG+10
 
 #define  APP_IPC_CUSTOM_DATA      APP_SYSCTRL_MSG+100
 
-//系统控制
+//
 #define  SYS_CTRL_MSG             APP_SYSCTRL_MSG+1000     //0x83000e8
-#define  SYS_START_UPDATE         SYS_CTRL_MSG+0      //暂时只支持自己App程序升级，linux操作系统升级方案待定
+#define  SYS_START_UPDATE         SYS_CTRL_MSG+0      
 #define  SYS_APP_UPDATE           SYS_CTRL_MSG+1      
 
-#define  SYS_UI_HINT              SYS_CTRL_MSG+3      //gui提示信息 如升级模块发送给GUI提示升级
-#define  SYS_GET_UP_MD5        		SYS_CTRL_MSG+4      //获取升级文件md5
-#define  SYS_SET_UP_MD5        		SYS_CTRL_MSG+5      //写升级文件md5   
+#define  SYS_UI_HINT              SYS_CTRL_MSG+3      //gui hint info 
+#define  SYS_GET_UP_MD5        		SYS_CTRL_MSG+4      //get update package md5
+#define  SYS_SET_UP_MD5        		SYS_CTRL_MSG+5      //write update package file md5   
 
 #endif
 
