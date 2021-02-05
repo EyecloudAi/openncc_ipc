@@ -43,7 +43,8 @@ public:
     enum PlayError{
         INTERRUPTION,
         RTSP_SERVER_ERROR,
-        NETWORK_ERROR
+        NETWORK_ERROR,
+        FAILED_OPEN
     };
 
     VideoDecodeThread();
@@ -53,7 +54,7 @@ public:
     void playerRtspStream(QString url, int delaySec);
     void stopRtspStream();
 
-    PlayError runPlay(QString rtspUrl);
+    PlayError virtual runPlay(QString rtspUrl) ;
 
 signals:
     void updateMat(cv::Mat mat);
@@ -61,13 +62,13 @@ signals:
     void rtspServerError(QString rtspUrl);
     void closeDevice();
 
-private:
+protected:
     bool openFormat(QString url);
     void closeFormat();
     void statisticMat(cv::Mat& mat);
 
 
-private:
+protected:
     QString url_;
 
     AVFormatContext                     *ic_;

@@ -111,6 +111,8 @@ MainWindow::MainWindow(QWidget *parent) :
 //    upW->exec();
 //    delete upW;
 
+    saveVideo_ = nullptr;
+
 }
 
 MainWindow::~MainWindow()
@@ -821,4 +823,41 @@ void MainWindow::on_pushButton_clicked()
     //openVideoPlay(rtspUrl,15);
 
     closeDevice();
+}
+
+void MainWindow::on_save_video_clicked()
+{
+    if(saveVideo_){
+        ui->save_video->setText("Start record");
+        saveVideo_->stopRecord();
+        delete saveVideo_;
+        saveVideo_ = nullptr;
+
+    }else{
+
+        QString choosedDeviceIp = ui->devicesComboBox_->currentText();
+        if(choosedDeviceIp.isEmpty() || rtspAddress_.count(choosedDeviceIp) <= 0){
+            qCritical()<<"Failed to open rtsp stream,invalid devivce ip="
+                      <<choosedDeviceIp;
+            return;
+        }
+
+        QString rtspUrl = rtspAddress_[choosedDeviceIp];
+        //QString rtspUrl="rtsp://192.168.0.3:8554/liveRGB";
+        qInfo()<<"record by rtsp: rtsp url="<< rtspUrl;
+
+        QString srcDirPath = QFileDialog::getExistingDirectory(
+                       this, "choose record directory",
+                        "/");
+
+        if (srcDirPath.isEmpty()){
+            return;
+        }
+
+        qInfo()<<"record file dir ="<<srcDirPath;
+        saveVideo_ = new SaveRawVideo;
+        saveVideo_->startRecord(rtspUrl,1, srcDirPath);
+
+        ui->save_video->setText("Stop record");
+    }
 }

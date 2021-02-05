@@ -24,6 +24,18 @@ limitations under the License.
 #include <QDebug>
 #include <QObject>
 #include <chrono>
+#include <chrono>
+#include <mutex>
+#include <condition_variable>
+#include <vector>
+#include <map>
+#include <assert.h>
+#include <iostream>
+#include <ratio>
+#include <chrono>
+#include <mutex>
+#include <iostream>
+#include <fstream>
 
 cv::Mat pintScoreOnMat(cv::Mat rgbImg, char *nnret, float minScore);
 cv::Mat cls_show_img_func(cv::Mat rgbImg, char *nnret,float min_score);
@@ -66,6 +78,45 @@ private:
 };
 
 void millsecToTimes(long long msec,char* buf);
+
+class BinaryWriter {
+    public:
+        bool open(std::string path) {
+            fp_ = fopen(path.c_str(), "wb");
+            if (fp_ == NULL) {
+                return false;
+            }
+            return true;
+        }
+
+        bool append(unsigned char* data, int len) {
+            if (fp_ == nullptr) {
+                return false;
+            }
+
+            int freeSize = len;
+
+            while (freeSize > 0) {
+
+                int tmpSize = fwrite(data + len - freeSize, 1, freeSize, fp_);
+                if (tmpSize <= 0) {
+                    fflush(fp_);
+                    return false;
+                }
+                freeSize -= tmpSize;
+            }
+            fflush(fp_);
+            return true;
+        }
+
+        void close() {
+            fclose(fp_);
+            fp_ = NULL;
+        }
+    private:
+
+        FILE* fp_;
+    };
 
 
 #endif // AIUTIL_H

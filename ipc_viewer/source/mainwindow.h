@@ -30,6 +30,9 @@ limitations under the License.
 #include <QtConcurrent/QtConcurrent>
 #include <QFuture>
 #include <set>
+
+#include "saverawvideo.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -189,6 +192,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_save_video_clicked();
+
 public slots:
     void updateMat(cv::Mat mat);
 
@@ -228,7 +233,7 @@ private:
 
     video_enc_param                     playEnc_;
 
-
+    SaveRawVideo                        *saveVideo_;
 };
 
 #endif // MAINWINDOW_H

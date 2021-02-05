@@ -39,6 +39,7 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     playwidget.cpp \
+    saverawvideo.cpp \
     upgradewidget.cpp \
     videodecodethread.cpp
 
@@ -50,6 +51,7 @@ HEADERS += \
         mainwindow.h \
         cli_sdk/cliSdk.h \
     playwidget.h \
+    saverawvideo.h \
     upgradewidget.h \
     videodecodethread.h
 
